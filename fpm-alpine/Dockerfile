@@ -10,7 +10,7 @@ RUN set -xe \
     && ln -s /usr/src/grav /usr/src/grav/grav-admin \
     && unzip /usr/src/grav/grav-admin.zip -d /usr/src/grav \
     && rm /usr/src/grav/grav-admin.zip /usr/src/grav/grav-admin \
-    && chown -R 33:33 /usr/src/grav \
+    && chown -R www-data:www-data /usr/src/grav \
     && apk del .build-deps
 
 COPY ./docker-entrypoint.sh /entrypoint.sh
