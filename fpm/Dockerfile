@@ -1,5 +1,12 @@
 FROM php:fpm
 
+ENV GRAV_DOWNLOAD_SHA256 c7cc861bc4838f3a5880d85791277c67b28dfbe8676e6e5d8fe323a960c6eb82
+
+RUN mkdir -p /usr/src/grav \
+    && curl -fSL -o /usr/src/grav/grav-admin.zip \
+       'https://github.com/getgrav/grav/releases/download/1.2.4/grav-admin-v1.2.4.zip' \
+    && echo "$GRAV_DOWNLOAD_SHA256  /usr/src/grav/grav-admin.zip" | sha256sum -c -
+
 RUN set -xe \
     && buildDeps=" \
           unzip \
@@ -8,9 +15,6 @@ RUN set -xe \
     && apt-get update && apt-get install -y libpng12-0 $buildDeps --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install gd zip \
-    && mkdir -p /usr/src/grav \
-    && curl -L -o /usr/src/grav/grav-admin.zip \
-       'https://github.com/getgrav/grav/releases/download/1.2.4/grav-admin-v1.2.4.zip' \
     && ln -s /usr/src/grav /usr/src/grav/grav-admin \
     && unzip /usr/src/grav/grav-admin.zip -d /usr/src/grav \
     && rm /usr/src/grav/grav-admin.zip /usr/src/grav/grav-admin \
