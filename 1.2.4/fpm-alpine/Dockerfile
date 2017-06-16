@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:7-fpm-alpine
 
 ENV GRAV_DOWNLOAD_SHA256 c7cc861bc4838f3a5880d85791277c67b28dfbe8676e6e5d8fe323a960c6eb82
 

@@ -1,4 +1,4 @@
-FROM php:apache
+FROM php:7-fpm
 
 ENV GRAV_DOWNLOAD_SHA256 c7cc861bc4838f3a5880d85791277c67b28dfbe8676e6e5d8fe323a960c6eb82
 
@@ -21,9 +21,7 @@ RUN set -xe \
     && chown -R www-data:www-data /usr/src/grav \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps
 
-RUN a2enmod rewrite
-
 COPY ./docker-entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT [ "/bin/sh", "/entrypoint.sh" ]
-CMD [ "apache2-foreground" ]
+CMD [ "php-fpm" ]
