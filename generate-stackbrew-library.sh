@@ -2,8 +2,7 @@
 set -eu
 
 declare -A aliases=(
-	[8.3]='8 latest'
-	[8.4-rc]='rc'
+	[1.2]='1.2.4 latest'
 )
 
 self="$(basename "$BASH_SOURCE")"
@@ -38,11 +37,10 @@ dirCommit() {
 }
 
 cat <<-EOH
-# this file is generated via https://github.com/docker-library/drupal/blob/$(fileCommit "$self")/$self
+# this file is generated via https://github.com/docker-library/grav/blob/$(fileCommit "$self")/$self
 
-Maintainers: Tianon Gravi <admwiggin@gmail.com> (@tianon),
-             Joseph Ferguson <yosifkit@gmail.com> (@yosifkit)
-GitRepo: https://github.com/docker-library/drupal.git
+Maintainers: Frieder Paape <grav-gitub@paape.io> (@lead4good)
+GitRepo: https://github.com/docker-library/grav.git
 EOH
 
 # prints "$2$1$3$1...$N"
