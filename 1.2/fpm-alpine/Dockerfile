@@ -1,10 +1,11 @@
 FROM php:7-fpm-alpine
 
+ENV GRAV_VERSION 1.2.4
 ENV GRAV_DOWNLOAD_SHA256 c7cc861bc4838f3a5880d85791277c67b28dfbe8676e6e5d8fe323a960c6eb82
 
 RUN mkdir -p /usr/src/grav \
     && curl -fSL -o /usr/src/grav/grav-admin.zip \
-       'https://github.com/getgrav/grav/releases/download/1.2.4/grav-admin-v1.2.4.zip' \
+       "https://github.com/getgrav/grav/releases/download/$GRAV_VERSION/grav-admin-v$GRAV_VERSION.zip" \
     && echo "$GRAV_DOWNLOAD_SHA256  /usr/src/grav/grav-admin.zip" | sha256sum -c -
 
 RUN set -xe \
